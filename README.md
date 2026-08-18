@@ -2,6 +2,21 @@
 
 **Week 5 · DSAW · Universidad de La Sabana**
 
+## LINK DE DESPLIEGUE
+https://dsaw-2026-2.github.io/hw05-javascript-fundamentals-acaycedo24/
+
+## Nombre estudiante:
+Alejandro Caycedo Montero 
+
+## Nombre grupo e integrantes de grupo:
+
+CONECTANEGOCIO - (Nombre grupo)
+
+- Sebastian Franco Umbacia
+- Catalina Vega Romero
+- Jose Alejandro Melo
+- Alejandro Caycedo Montero
+
 ## Objective
 
 Add real interactivity to your project page using **vanilla JavaScript** — no libraries, no frameworks.

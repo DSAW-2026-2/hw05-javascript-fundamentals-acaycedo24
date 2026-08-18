@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Prototipo académico de ConectaNegocio para comparar ofertas de proveedores."
+    >
+    <title>Ofertas | ConectaNegocio</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">CN</span>
+          <span class="brand-name">Conecta<br><strong>Negocio</strong></span>
+        </div>
+
+        <nav class="main-nav">
+          <a href="#inicio"><span aria-hidden="true">⌂</span> Inicio</a>
+          <a class="active" href="#ofertas" aria-current="page"><span aria-hidden="true">▣</span> Ofertas</a>
+          <a href="#proveedores"><span aria-hidden="true">♙</span> Proveedores</a>
+          <a href="#pedidos"><span aria-hidden="true">▤</span> Pedidos</a>
+          <a href="#chat"><span aria-hidden="true">◌</span> Chat</a>
+          <a href="#productos"><span aria-hidden="true">◇</span> Productos</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a href="#configuracion"><span aria-hidden="true">⚙</span> Configuración</a>
+          <p class="demo-label"><span aria-hidden="true">●</span> Prototipo académico</p>
+        </div>
+      </aside>
+
+      <div class="page-column">
+        <header class="topbar">
+          <button
+            class="icon-button mobile-menu-button"
+            id="menu-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+          <label class="global-search" for="offer-search">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only">Buscar ofertas</span>
+            <input
+              id="offer-search"
+              type="search"
+              placeholder="Buscar producto, proveedor o categoría..."
+              autocomplete="off"
+            >
+            <kbd>Ctrl K</kbd>
+          </label>
+
+          <div class="header-actions">
+            <button class="icon-button" type="button" aria-label="Ayuda">?</button>
+            <button class="icon-button notification-button" type="button" aria-label="Notificaciones">
+              ♢<span class="notification-dot" aria-hidden="true"></span>
+            </button>
+            <span class="header-divider" aria-hidden="true"></span>
+            <div class="profile-summary">
+              <span class="avatar" aria-hidden="true">CM</span>
+              <span><strong>Carolina Mejía</strong><small>Papelería La Sabana</small></span>
+            </div>
+          </div>
+        </header>
+
+        <main id="contenido-principal">
+          <div class="content-wrap">
+            <section class="page-heading" aria-labelledby="page-title">
+              <div>
+                <p class="eyebrow">Abastecimiento</p>
+                <h1 id="page-title">Ofertas</h1>
+                <p>Compara precios y condiciones de proveedores para tomar una mejor decisión.</p>
+              </div>
+              <button class="primary-button" id="new-request-button" type="button">
+                <span aria-hidden="true">＋</span> Nueva solicitud
+              </button>
+            </section>
+
+            <aside class="data-notice" aria-label="Aviso sobre los datos">
+              <span aria-hidden="true">ⓘ</span>
+              <p><strong>Datos de demostración:</strong> todos los productos, proveedores, precios y perfiles de esta página son ficticios.</p>
+              <button id="dismiss-notice" type="button" aria-label="Cerrar aviso">×</button>
+            </aside>
+
+            <section class="metrics-grid" aria-label="Resumen de ofertas">
+              <article class="metric-card">
+                <span class="metric-icon terracotta" aria-hidden="true">▣</span>
+                <div><p>Ofertas activas</p><strong id="active-offers-count">8</strong><small>Disponibles hoy</small></div>
+              </article>
+              <article class="metric-card">
+                <span class="metric-icon yellow" aria-hidden="true">◷</span>
+                <div><p>Ofertas próximas a vencer</p><strong>2</strong><small>En los próximos 7 días</small></div>
+              </article>
+              <article class="metric-card">
+                <span class="metric-icon blue" aria-hidden="true">♙</span>
+                <div><p>Proveedores activos</p><strong>6</strong><small>Con ofertas publicadas</small></div>
+              </article>
+              <article class="metric-card">
+                <span class="metric-icon green" aria-hidden="true">↗</span>
+                <div><p>Comparaciones</p><strong>4</strong><small>Guardadas este mes</small></div>
+              </article>
+            </section>
+
+            <section class="offers-panel" id="ofertas" aria-labelledby="offers-title">
+              <div class="panel-heading">
+                <div>
+                  <h2 id="offers-title">Lista de ofertas</h2>
+                  <p id="result-summary" aria-live="polite">8 ofertas encontradas</p>
+                </div>
+                <button class="secondary-button" id="clear-filters" type="button">Limpiar filtros</button>
+              </div>
+
+              <div class="filter-bar" aria-label="Filtros de ofertas">
+                <label>
+                  <span>Categoría</span>
+                  <select id="category-filter">
+                    <option value="all">Todas las categorías</option>
+                    <option value="cuadernos">Cuadernos</option>
+                    <option value="escritura">Escritura</option>
+                    <option value="papeleria">Papelería</option>
+                    <option value="archivo">Archivo</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Disponibilidad</span>
+                  <select id="availability-filter">
+                    <option value="all">Cualquier disponibilidad</option>
+                    <option value="available">Disponible</option>
+                    <option value="limited">Cupo limitado</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Ordenar por</span>
+                  <select id="sort-filter">
+                    <option value="recommended">Recomendadas</option>
+                    <option value="price-asc">Menor precio</option>
+                    <option value="price-desc">Mayor precio</option>
+                    <option value="delivery">Entrega más rápida</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Producto</th>
+                      <th scope="col">Proveedor</th>
+                      <th scope="col">Precio unitario</th>
+                      <th scope="col">Compra mínima</th>
+                      <th scope="col">Entrega</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col"><span class="sr-only">Acciones</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="offers-body"></tbody>
+                </table>
+              </div>
+
+              <div class="empty-state" id="empty-state" hidden>
+                <span aria-hidden="true">⌕</span>
+                <h3>No encontramos ofertas</h3>
+                <p>Prueba con otra palabra o limpia los filtros seleccionados.</p>
+              </div>
+            </section>
+
+            <section class="activity-panel" aria-labelledby="activity-title">
+              <div class="panel-heading">
+                <div><h2 id="activity-title">Actividad reciente</h2><p>Últimos movimientos simulados</p></div>
+              </div>
+              <ul id="activity-list">
+                <li><span class="activity-dot orange" aria-hidden="true"></span><div><strong>Oferta consultada</strong><p>Cuaderno argollado · Distribuciones Andina</p></div><time datetime="2026-08-16T15:10">Hace 2 h</time></li>
+                <li><span class="activity-dot blue" aria-hidden="true"></span><div><strong>Comparación guardada</strong><p>3 ofertas de resmas carta</p></div><time datetime="2026-08-16T10:40">Hace 6 h</time></li>
+              </ul>
+            </section>
+          </div>
+        </main>
+
+        <footer>
+          <p>ConectaNegocio · Prototipo académico DSAW</p>
+          <p>Todos los datos mostrados son ficticios y se usan únicamente con fines educativos.</p>
+        </footer>
+      </div>
+    </div>
+
+    <dialog id="request-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-card">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">Solicitud de compra</p><h2 id="dialog-title">Solicitar una oferta</h2></div>
+          <button class="close-dialog" id="close-dialog" type="button" aria-label="Cerrar formulario">×</button>
+        </div>
+        <p class="dialog-intro">Completa los datos para enviar una solicitud ficticia al proveedor.</p>
+
+        <form id="request-form" novalidate>
+          <div class="field full-field">
+            <label for="product">Producto y proveedor</label>
+            <select id="product" name="product" aria-describedby="product-error">
+              <option value="">Selecciona una oferta</option>
+            </select>
+            <small class="field-error" id="product-error" aria-live="polite"></small>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="quantity">Cantidad</label>
+              <input id="quantity" name="quantity" type="number" min="1" max="500" placeholder="Ej. 24" aria-describedby="quantity-hint quantity-error">
+              <small class="field-hint" id="quantity-hint">Entre 1 y 500 unidades</small>
+              <small class="field-error" id="quantity-error" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="delivery-date">Fecha requerida</label>
+              <input id="delivery-date" name="deliveryDate" type="date" aria-describedby="delivery-date-error">
+              <small class="field-error" id="delivery-date-error" aria-live="polite"></small>
+            </div>
+          </div>
+
+          <div class="field full-field">
+            <label for="email">Correo de contacto</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" aria-describedby="email-error">
+            <small class="field-error" id="email-error" aria-live="polite"></small>
+          </div>
+
+          <div class="field full-field">
+            <label for="address">Dirección de entrega</label>
+            <input id="address" name="address" type="text" autocomplete="street-address" placeholder="Ej. Carrera 7 # 120-20, local 3" aria-describedby="address-error">
+            <small class="field-error" id="address-error" aria-live="polite"></small>
+          </div>
+
+          <div class="field full-field">
+            <div class="label-row"><label for="notes">Observaciones <span>(opcional)</span></label><span id="notes-counter">0/180</span></div>
+            <textarea id="notes" name="notes" rows="3" maxlength="180" placeholder="Agrega indicaciones para el proveedor" aria-describedby="notes-error"></textarea>
+            <small class="field-error" id="notes-error" aria-live="polite"></small>
+          </div>
+
+          <div class="field checkbox-field full-field">
+            <input id="terms" name="terms" type="checkbox" aria-describedby="terms-error">
+            <label for="terms">Entiendo que esta solicitud es una demostración y no genera una compra real.</label>
+            <small class="field-error" id="terms-error" aria-live="polite"></small>
+          </div>
+
+          <div class="dialog-actions">
+            <button class="secondary-button" id="cancel-dialog" type="button">Cancelar</button>
+            <button class="primary-button" type="submit">Guardar solicitud ficticia</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <div class="toast" id="success-toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <span aria-hidden="true">✓</span>
+      <div><strong>Solicitud guardada</strong><p>Se agregó a la actividad reciente como demostración.</p></div>
+      <button type="button" id="close-toast" aria-label="Cerrar notificación">×</button>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
